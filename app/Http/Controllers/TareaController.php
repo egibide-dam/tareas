@@ -32,7 +32,7 @@ class TareaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,45 +50,52 @@ class TareaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tarea $tarea
+     * @param \App\Tarea $tarea
      * @return \Illuminate\Http\Response
      */
     public function show(Tarea $tarea)
     {
-        //
+        return view('tareas.show', compact('tarea'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tarea $tarea
+     * @param \App\Tarea $tarea
      * @return \Illuminate\Http\Response
      */
     public function edit(Tarea $tarea)
     {
-        //
+        return view('tareas.edit', compact('tarea'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Tarea $tarea
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Tarea $tarea
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
+        $tarea->titulo = request('titulo');
+        //$tarea->completada = request('completada');
+
+        $tarea->save();
+
+        return redirect(route('tareas.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tarea $tarea
+     * @param \App\Tarea $tarea
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tarea $tarea)
     {
-        //
+        $tarea->delete();
+
+        return redirect(route('tareas.index'));
     }
 }

@@ -10,7 +10,16 @@
 
     <ul>
         @foreach($tareas as $tarea)
-            <li>{{ $tarea->titulo }}</li>
+            <li>
+                <a href="{{ route('tareas.show',['id'=>$tarea->id]) }}">{{ $tarea->titulo }}</a>
+                <a href="{{ route('tareas.edit',['id'=>$tarea->id]) }}">Editar</a>
+
+                <form action="{{ route('tareas.destroy',['id'=>$tarea->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="Borrar"/>
+                </form>
+            </li>
         @endforeach
     </ul>
 

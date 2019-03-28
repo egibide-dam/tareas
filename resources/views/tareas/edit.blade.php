@@ -2,13 +2,14 @@
 
 @section('content')
 
-    <h1>Nueva tarea</h1>
+    <h1>Editar tarea</h1>
 
-    <form action="{{ route('tareas.store') }}" method="POST">
+    <form action="{{ route('tareas.update',['id'=>$tarea->id]) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <label for="titulo">Título: </label>
-        <input type="text" id="titulo" name="titulo"/>
+        <input type="text" id="titulo" name="titulo" value="{{ $tarea->titulo }}"/>
 
         <input type="submit" value="Guardar"/>
     </form>
